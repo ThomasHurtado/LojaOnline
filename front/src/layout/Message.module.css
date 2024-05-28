@@ -1,0 +1,27 @@
+.message{
+    position: fixed;
+    display: flex;
+    justify-content: center; /* centralizar horizontalmente */
+    align-items: center; /* centralizar verticalmente */
+    padding: 1em;
+    border: 1px solid black;
+    margin: 1.2em auto 0;
+    width: 50%;
+    border-radius: 15px;
+}
+
+.success{
+    color: blue;
+    background-color: rgb(71, 206, 71);
+}
+
+.error{
+    color: black;
+    background-color: rgb(231, 85, 85);
+}
+
+.alinhar{
+    display: flex;
+    justify-items: right;
+    padding-left: 25%;
+}

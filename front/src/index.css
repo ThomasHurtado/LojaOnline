@@ -1,0 +1,15 @@
+*{
+  padding: 0;
+  border: 0;
+  margin: 0;
+  font-family: 'Times New Roman', Times, serif;
+  box-sizing: border-box;
+  background-color: #f5f5f5;
+}
+
+h1{
+  color:blueviolet;
+  margin-bottom: 1em;
+  font-size: 2.1em;
+}
+
