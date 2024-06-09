@@ -3,6 +3,9 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
 
+const getToken = require('../helpers/get-token')
+const check_token = require('../helpers/check-token')
+
 
 module.exports = class UserController {
 
@@ -112,4 +115,133 @@ module.exports = class UserController {
             res.status(500).json({message: error})
         }
      }
+
+     static async checkUser(req, res){
+        const authHeader = req.headers['authorization']
+        const token = authHeader && authHeader.split(' ')[1]
+      
+        if(!token){
+          res.status(401).json({message: 'Acesso negado!'})
+          return
+        }
+      
+        try {
+          const secret = process.env.SECRET
+      
+          jwt.verify(token, secret, async (err, decoded) =>{
+            if(err){
+              return res.status(400).json({message: 'Token inválido!'})
+            } 
+      
+            req.id = decoded.id
+            const currentUser = await User.findById(req.id)
+            res.status(200).json(currentUser)
+          })
+      
+        } catch (error) {
+          res.status(400).json({message: 'Token inválido!'})
+          return
+        }
+      }
+
+      static async updateMoneyMinus(req, res){
+        
+        const {money} = req.body
+
+        const user = await User.findById(req.id)
+        
+        if(money < 0 || money === undefined){
+            res.status(400).json({message: 'Digite um valor correto!'})
+            return
+        }
+
+        user.money = parseFloat(user.money) - parseFloat(money);
+
+        if(user.money < 0){
+            res.status(400).json({message: 'Você não tem dinheiro suficiente!'})
+            return
+        }
+        
+
+        try {
+            await User.findByIdAndUpdate(req.id, user)
+            res.status(200).json({message: 'Dinheiro atualizado com sucesso!'})
+        } catch (error) {
+            res.status(402).json({message: error})
+        }
+      }
+
+      static async updateMoneyPlus(req, res){
+        
+        const {money} = req.body
+
+        if(!money){
+            res.status(400).json({message: 'Digite um valor!'})
+            return
+        }
+        console.log(money)
+
+        const user = await User.findById(req.id)
+        
+        if(money <= 0 || money === " "){
+            res.status(400).json({message: 'Digite um valor correto!'})
+            return
+        }
+
+        user.money = parseFloat(user.money) + parseFloat(money);
+        
+
+        try {
+            await User.findByIdAndUpdate(req.id, user)
+            res.status(200).json({message: 'Dinheiro atualizado com sucesso!'})
+        } catch (error) {
+            res.status(402).json({message: error})
+        }
+      }
+
+      static async updateUser(req,res){
+        const {email, phone, password, confirmpassword} = req.body
+        const user = await User.findById(req.id)
+
+        const userExist = await User.findOne({email: email})
+
+        if(user.email !== email && userExist){
+            res.status(422).json({message: 'Esse email ja foi cadastrado!'})
+            return
+        }
+
+        user.email = email
+
+        if(!phone){
+            res.status(422).json({message: 'O telefone é obrigatorio!'})
+            return
+        }
+
+        user.phone = phone
+
+        if(password !== confirmpassword){
+            res.status(422).json({message: 'As senhas devem ser iguais!'})
+            return
+        } else if(password == confirmpassword && password !== null){
+
+            const salt = await bcrypt.genSalt(12)
+            const passwordHash = await bcrypt.hash(password, salt)
+
+            user.password = passwordHash
+        }
+
+
+        try {
+            const updatedUser = await User.findOneAndUpdate(
+                {_id: user.id},
+                {$set: user},
+                {new: true},
+            )
+            res.status(200).json({message: 'Usuário atualizado com sucesso!'})
+        } catch (error) {
+            res.status(500).json({message: 'Erro ao atualizar usuário!'})
+
+        }
+
+      }
 }

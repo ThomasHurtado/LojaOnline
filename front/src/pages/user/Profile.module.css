@@ -1,0 +1,28 @@
+.profile{
+    padding-top: 40px;
+}
+
+.profile_container * {
+    box-sizing: border-box;
+    width: auto;
+  }
+
+.profile_container{
+    display: flex;
+    vertical-align: middle;
+    flex-direction: column;
+    gap: 2rem;
+    margin: 3rem;
+    width:min-content;
+
+}
+
+.profile_text{
+    background-color: blue;
+    font-size: 1.5rem;
+    width: auto;
+}
+
+.profile_text:hover{
+    color:black;
+}

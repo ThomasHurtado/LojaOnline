@@ -1,6 +1,50 @@
 .navbar{
+    background-color: blueviolet;
+    width: 100%;
+    height: 40px;
+    position: fixed;
+    font-size: 26px;
+}
+
+.navbar_text{
+    color: aliceblue;
     display: flex;
-    justify-content: space-between;
-    background-color: blue;
-    border: 0;
+    justify-content: space-around;
+    align-items: center;
+    background-color: inherit;
+}
+
+.navtext{
+    margin-top: 7px;
+    background-color: blueviolet;
+}
+
+.navuser{
+    margin-top: 6px;
+    background-color: blueviolet;
+    padding-left: 30px;
+    
+}
+
+.navspace{
+    display: flex;
+    background-color: inherit;
+    gap:35px;
+}
+
+.navtext:hover{
+    color:black
+}
+
+.cash{
+    margin-top: 5px;
+    color: blueviolet;
+    border-radius: 22px;
+    height: 2rem;
+    
+}
+
+.cash:hover{
+    color:black
+
 }

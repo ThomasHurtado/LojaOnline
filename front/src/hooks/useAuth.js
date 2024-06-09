@@ -24,6 +24,16 @@ export default function useAuth(){
         }
     }, [])
 
+    async function authUser(data){
+
+        setAuth(true)
+        localStorage.setItem('token', JSON.stringify(data.token))
+
+        setTimeout(() => {
+            navigate('/home')
+          }, 3000) 
+    }
+
     async function register(user){
 
         let msgText = 'Cadastro com sucesso'
@@ -34,7 +44,10 @@ export default function useAuth(){
                 return response.data
             })
 
-            authUser(data)
+            setTimeout(() => {
+                navigate('/login')
+              }, 3000)
+
         } catch (error) {
             msgText = error.response.data.message
             msgType = 'error'
@@ -43,15 +56,6 @@ export default function useAuth(){
         setFlashMessage(msgText, msgType)
     }
 
-    async function authUser(data){
-
-        setAuth(true)
-        localStorage.setItem('token', JSON.stringify(data.token))
-
-        setTimeout(() => {
-            navigate('/home')
-          }, 3000) 
-    }
 
     async function login(user){
         let msgText = 'Login realizado com sucesso'
@@ -86,5 +90,44 @@ export default function useAuth(){
 
 
     }
-    return { auth, register, logout, login }
+
+    async function updatedMoneyPlus(user){
+        let msgText = 'Valor atualizado com sucesso!'
+        let msgType = 'success'
+
+        try {
+            
+            const data = await api.patch('/users/updatemoneyplus', user).then((response) =>{
+                return response.data
+            })
+
+        } catch (error) {
+            msgText = error.response.data.message
+            msgType = 'error' 
+        }
+
+        setFlashMessage(msgText, msgType)
+
+    }
+
+    async function updatedMoneyMinus(user){
+        let msgText = 'Valor atualizado com sucesso!'
+        let msgType = 'success'
+
+        try {
+            
+            const data = await api.patch('/users/updatemoneyminus', user).then((response) =>{
+                return response.data
+            })
+
+        } catch (error) {
+            msgText = error.response.data.message
+            msgType = 'error' 
+        }
+
+        setFlashMessage(msgText, msgType)
+
+    }
+
+    return { auth, register, logout, login, updatedMoneyPlus, updatedMoneyMinus }
 }

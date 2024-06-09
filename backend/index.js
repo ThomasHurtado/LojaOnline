@@ -10,8 +10,10 @@ app.use(cors({ credentials: true, origin: 'http://localhost:3000'}))
 
 //Routes
 const UserRoutes = require('./routes/UserRoutes')
+const ProductRoutes = require('./routes/ProductRoutes')
 
 app.use('/users', UserRoutes)
+app.use('/products', ProductRoutes)
 
 
 mongoose

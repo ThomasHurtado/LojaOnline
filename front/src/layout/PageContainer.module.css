@@ -1,0 +1,6 @@
+.pagecontainer {
+    border-left: 5dvw solid blueviolet;
+    border-right: 5dvw solid blueviolet;
+    background-image: repeating-linear-gradient(to bottom, blueviolet, blueviolet 2px, transparent 2px, transparent 4px);
+    background-size: 1px 4px;
+  }

@@ -9,7 +9,7 @@ function Footer(){
                     Links Github:
                 </p>
                 <p>
-                    <a href='https://github.com/ThomasHurtado' target="_blank" rel="noopener noreferrer">Thomas</a>
+                    <a href='https://github.com/CaioUmeda' target="_blank" rel="noopener noreferrer">Caio</a>
                 </p>
                 <p>
                     <a href='https://github.com/ThomasHurtado' target="_blank" rel="noopener noreferrer">Thomas</a>
