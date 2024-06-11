@@ -1,0 +1,47 @@
+.styles.productlist_header h1{
+    padding-top: 5rem;
+}
+
+.productlist_container{
+    border: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    row-gap: 5rem;
+    margin-left: 6rem;
+    margin-right: 6rem;
+    padding-bottom: 10rem;
+}
+
+.productlist_container > div {
+    
+    box-sizing: border-box;
+    border: 2px solid blueviolet;
+    border-radius: 5px;
+}
+
+.product{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30dvw;
+    background-color: none;
+    color:blueviolet;
+    row-gap: 0.5rem;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.product_button{
+    background-color: blueviolet;
+    color:aliceblue;
+    font-size: 18px;
+    border-radius: 5px;
+    height: 2rem;
+    width: 14rem;
+    margin-top: 2rem;
+}
+
+.product_button:hover{
+    background-color: rgb(176, 107, 240);
+}

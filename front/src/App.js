@@ -16,8 +16,10 @@ import Profile from './pages/user/Profile';
 import EditProfile from './pages/user/EditProfile';
 import UserMoney from './pages/user/UserMoney';
 
+
 //context
 import { UserProvider } from './context/UserContext';
+import AddProduct from './pages/product/AddProduct';
 
 function NavbarContainer() {
   const location = useLocation();
@@ -41,6 +43,7 @@ function App() {
           <Route path="/profile" element={<Profile />} /> 
           <Route path="/profile/edit" element={<EditProfile />} /> 
           <Route path="/money" element={<UserMoney />} /> 
+          <Route path="/product/register" element={<AddProduct />} /> 
 
         </Routes>
         <Footer />

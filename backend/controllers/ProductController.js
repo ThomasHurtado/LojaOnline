@@ -95,4 +95,11 @@ module.exports = class ProductController{
 
         res.status(200).json({product: product,})
     }
+
+    static async getAllProducts(req,res){
+
+        const products = await Product.find().sort('-createdAt')
+
+        res.status(200).json({products: products,})
+    }
 }

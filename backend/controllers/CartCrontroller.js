@@ -80,18 +80,82 @@ module.exports = class ProductController{
             if(cart.items[index].quantity > 1){
                 cart.items[index].quantity--
                 cart.price -= product.price
+                await cart.save();
+                res.json({message: 'Unidade removida com sucesso'})
                 }else{
                     cart.items.splice(index, 1)
-                   
-
+                    cart.price -= product.price
+                    await cart.save();
+                    res.json({message: 'Produto removido com sucesso'})
                 }
 
-            await cart.save();
             
-            res.json({message: 'deu certo'})
         } catch (error) {
             res.status(400).json({message: 'Failed to remove product to cart'})
             
         }
     }
+
+    static async removeItemFromCart(req, res){
+
+        const id = req.params.id
+        let user
+        let product
+
+        try {
+            user = await User.findById(req.id)
+        } catch (error) {
+            return res.status(401).json({message: 'Unauthorized access'})
+        }
+
+        try {
+            product = await Product.findById(id)
+        } catch (error) {
+            return res.status(404).json({message: 'Product not found'})
+        }
+
+        try {
+
+            const cart = await Cart.findOne({owner: user._id})
+        
+            // Verifique se o produto já está no carrinho
+            const index = cart.items.findIndex(item => item.product.toString() === id)
+
+            cart.price = cart.price - product.price*cart.items[index].quantity
+            cart.items.splice(index, 1)
+            await cart.save();
+            res.json({message: 'Produto removido com sucesso'})
+                
+        } catch (error) {
+            res.status(400).json({message: 'Failed to remove product to cart'})
+            
+        }
+    }
+
+    static async clearCart(req, res){
+
+        let user
+
+        try {
+            user = await User.findById(req.id)
+        } catch (error) {
+            return res.status(401).json({message: 'Unauthorized access'})
+        }
+
+        try {
+
+            const cart = await Cart.findOne({owner: user._id})
+        
+            cart.items = []
+            await cart.save();
+            res.json({message: 'Carrinho limpo!'})
+                
+        } catch (error) {
+            res.status(400).json({message: 'Failed to remove product to cart'})
+            
+        }
+    }
+
+    
+    
 }
