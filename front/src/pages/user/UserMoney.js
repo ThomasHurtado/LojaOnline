@@ -42,14 +42,13 @@ function UserMoney(){
         
     function hadleChange(e){
         setUser({...user, [e.target.name]: e.target.value})
-        e.target.value = " "
     }
 
     function handleSubimit(e){
         e.preventDefault()
         updatedMoneyPlus(user)
         setTimeout(() => {
-            document.location.reload();
+            //document.location.reload();
           }, 1500)
     }
 
@@ -63,7 +62,7 @@ function UserMoney(){
         e.preventDefault()
         updatedMoneyMinus(user)
         setTimeout(() => {
-            document.location.reload();
+            //document.location.reload();
           }, 1500)
     }
     

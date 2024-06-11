@@ -1,4 +1,5 @@
 const User = require('../models/User')
+const Cart = require('../models/Cart')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
@@ -59,9 +60,18 @@ module.exports = class UserController {
             password : passwordHash,
         })
 
+        const cart = new Cart({
+            owner:{
+                _id: user._id,
+                name: user.name,
+                email: user.email
+            }
+        })
+
         try {
             
             const newUser = await user.save()
+            await cart.save()
             res.status(202).json({message: 'Usuario criado com sucesso', newUser})
 
         } catch (error) {
