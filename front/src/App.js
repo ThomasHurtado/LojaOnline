@@ -15,7 +15,7 @@ import Inicial from './pages/Inicial';
 import Profile from './pages/user/Profile';
 import EditProfile from './pages/user/EditProfile';
 import UserMoney from './pages/user/UserMoney';
-
+import CartProducts from './pages/user/CartProducts';
 
 //context
 import { UserProvider } from './context/UserContext';
@@ -43,7 +43,8 @@ function App() {
           <Route path="/profile" element={<Profile />} /> 
           <Route path="/profile/edit" element={<EditProfile />} /> 
           <Route path="/money" element={<UserMoney />} /> 
-          <Route path="/product/register" element={<AddProduct />} /> 
+          <Route path="/product/register" element={<AddProduct />} />
+          <Route path="/cart" element={<CartProducts />} /> 
 
         </Routes>
         <Footer />

@@ -47,7 +47,7 @@ function Navbar(){
                 <Link to ="/home" className={styles.navtext}> Home </Link>
                 <div className={styles.navspace}>
                     <Link to ="/profile" className={styles.navtext}> Perfil </Link>
-                    <Link to ="/home" className={styles.navtext}> Carrinho </Link>
+                    <Link to ="/cart" className={styles.navtext}> Carrinho </Link>
                     <Link to ="/money" className={styles.cash}>${user.money}</Link>
                 </div>
             </div>

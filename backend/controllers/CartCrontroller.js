@@ -156,6 +156,32 @@ module.exports = class ProductController{
         }
     }
 
+    static async allCartProducts(req, res){
+
+        let user
+
+        try {
+            user = await User.findById(req.id)
+        } catch (error) {
+            return res.status(401).json({message: 'Unauthorized access'})
+        }
+
+        try {
+
+            const cart = await Cart.findOne({ owner: user._id });
+        
+            const productsWithQuantity = cart.items.map(item => ({
+                productId: item.product,
+                quantity: item.quantity
+            }));
     
+            res.status(200).json({ productsWithQuantity: productsWithQuantity });
+                
+        } catch (error) {
+            res.status(400).json({message: 'Nao deu certo'})
+            console.log(error)
+        }
+    
+    }
     
 }

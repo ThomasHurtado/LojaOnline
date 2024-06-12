@@ -25,7 +25,7 @@ function Home(){
 
     async function handleButtonClick(product){
         
-        let msgText = 'Produto cadastrado com sucesso!'
+        let msgText = 'Produto adicionado ao carrinho!'
         let msgType = 'success'
         console.log(product.id)
         try {
