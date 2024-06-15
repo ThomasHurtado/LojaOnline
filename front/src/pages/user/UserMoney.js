@@ -48,7 +48,7 @@ function UserMoney(){
         e.preventDefault()
         updatedMoneyPlus(user)
         setTimeout(() => {
-            //document.location.reload();
+            document.location.reload();
           }, 1500)
     }
 
@@ -62,7 +62,7 @@ function UserMoney(){
         e.preventDefault()
         updatedMoneyMinus(user)
         setTimeout(() => {
-            //document.location.reload();
+            document.location.reload();
           }, 1500)
     }
     

@@ -50,7 +50,7 @@ function AddProduct(){
                     text="Nome"
                     type="text"
                     name="name"
-                    placeholder="Digite seu nome"
+                    placeholder="Digite o nome do produto"
                     hadleOnChange={hadleChange}
                 />
                 <Input
@@ -61,7 +61,7 @@ function AddProduct(){
                     hadleOnChange={hadleChange}
                 />
                 <Input
-                    text="Quantidade"
+                    text="Estoque"
                     type="text"
                     name="amount"
                     placeholder="Digite a quantidade disponivel do produto"
@@ -75,7 +75,7 @@ function AddProduct(){
                     hadleOnChange={hadleChange}
                 />
                 <Input
-                    text="Preço (taxa de x%)"
+                    text="Preço (taxa de 5%)"
                     type="number"
                     name="price"
                     placeholder="Digite o preço do item"
