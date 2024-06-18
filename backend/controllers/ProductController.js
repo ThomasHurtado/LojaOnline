@@ -77,8 +77,8 @@ module.exports = class ProductController{
 
         try {
 
-            const product = await Product.find({'user._id':user._id}).sort('-price')
-            res.status(200).json({product,})
+            const product = await Product.find({'owner._id':user._id}).sort('-price')
+            res.status(200).json({product: product})
             
         } catch (error) {
             res.status(500).json({message: error})
@@ -104,4 +104,5 @@ module.exports = class ProductController{
 
         res.status(200).json({products: products,})
     }
+
 }

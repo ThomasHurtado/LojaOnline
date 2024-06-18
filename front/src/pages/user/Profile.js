@@ -27,8 +27,11 @@ function Profile(){
         <section className={styles.profile}>
             <h1>Perfil de {user.name} </h1>
             <div className={styles.profile_container}>
-                <Link to ="/home" className={styles.profile_text}> Home </Link>
-                <Link to ="/home" className={styles.profile_text}> Hoasasaasme </Link>
+                <Link to ="/profile/edit" className={styles.profile_text}> Editar dados pessoais </Link>
+                <Link to ="/product/register" className={styles.profile_text}> Cadastrar produto</Link>
+                <Link to ="/profile/myproducts" className={styles.profile_text}> Editar produtos </Link>
+                <Link to ="/home" className={styles.profile_text}> Minhas compras </Link>
+                <Link to ="/home" className={styles.profile_text}> Minhas vendas </Link>
             </div>
         </section>
         

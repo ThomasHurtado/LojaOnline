@@ -152,6 +152,35 @@ function CartProducts(){
         setFlashMessage(msgText, msgType)
     }
 
+    async function handleButtonClick4(product){
+        let msgText = 'Seu item foi excluído do carrinho'
+        let msgType = 'success'
+        try {
+            
+            const data = await api.patch(`cart/deleteproduct/${product._id}`, {
+                headers: {
+                    Authorization: `Bearer ${JSON.parse(token)}`
+                }
+            }).then((response) =>{
+            return response.data
+            })
+
+        } catch (error) {
+            if (error.response) {
+              msgText = error.response.data.message;
+            } else {
+              msgText = 'Erro desconhecido. Tente novamente mais tarde.';
+            }
+            msgType = 'error';
+            console.log(msgText);
+          }
+          setTimeout(() => {
+            document.location.reload();
+          }, 1500)
+        
+        setFlashMessage(msgText, msgType)
+    }
+
     
 
     return (
@@ -175,6 +204,7 @@ function CartProducts(){
                             {product.quantity}
                             <button className={styles.product_button} onClick={() => handleButtonClick(product)}>+</button>
                         </h2>
+                        <button className={styles.product_button2} onClick={() => handleButtonClick4(product)}>Excluir item</button>
                     </div>
                     ))}
                     <div className={styles.product_checkout}>

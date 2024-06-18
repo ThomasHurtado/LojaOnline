@@ -58,7 +58,7 @@ function Home(){
                     products.map((product) => (
                         <div className={styles.product} key={product._id}>
                             <h2>{product.name}</h2>
-                            <h2>{product.brand}</h2>
+                            <h2>Marca: {product.brand}</h2>
                             <h2>${product.price}</h2>
                             <div>
                                 <button className={styles.product_button} onClick={() => handleButtonClick(product)}>Adicionar ao carrinho</button>

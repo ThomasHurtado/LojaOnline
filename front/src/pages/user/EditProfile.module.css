@@ -3,6 +3,7 @@
     flex-direction: column;
     gap: 2rem;
     align-items: center;
+    
 }
 
 .formulario input[type = 'submit']{
@@ -13,6 +14,7 @@
     border-radius: 12px;
     color:#f5f5f5;
     margin-bottom: 7rem;
+    
 }
 
 .formulario input[type = 'submit']:hover{

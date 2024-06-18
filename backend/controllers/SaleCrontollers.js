@@ -58,6 +58,13 @@ module.exports = class SaleControllers{
             for (const item of cartItems) {
                 const product = await Product.findById(item.product);
                 product.amount -= item.quantity
+
+                const money = parseFloat(item.quantity)*parseFloat(product.price)*0.95
+                const sellerId = product.owner._id
+                const seller = await User.findById(sellerId)
+                seller.money += money
+
+                await User.findByIdAndUpdate(sellerId, seller)
                 await Product.findOneAndUpdate(item.product, product)
             }
             
@@ -65,10 +72,15 @@ module.exports = class SaleControllers{
         } catch (error) {
             console.log(error);
         }
+
+        cart.items.splice(0, cart.items.length)
+        cart.price = 0
+
         try {
             
             await User.findByIdAndUpdate(req.id, user)
             await sale.save()
+            await Cart.findByIdAndUpdate(cart._id, cart)
             res.status(200).json({message: "Sua compra foi faturada!"})
 
         } catch (error) {

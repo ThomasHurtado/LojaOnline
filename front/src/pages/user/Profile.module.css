@@ -13,14 +13,18 @@
     flex-direction: column;
     gap: 2rem;
     margin: 3rem;
-    width:min-content;
 
 }
 
+.profile_text::before {
+    content: "\2022"; 
+    margin-right: 8px; 
+    font-size: 1.2em; 
+}
+
 .profile_text{
-    background-color: blue;
     font-size: 1.5rem;
-    width: auto;
+    width: 20dvw;
 }
 
 .profile_text:hover{

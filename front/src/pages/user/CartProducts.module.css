@@ -77,6 +77,9 @@
     margin-top: 1rem;
     margin-left: .5rem;
     margin-right: .5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .product_button2:hover{

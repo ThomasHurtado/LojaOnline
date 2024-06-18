@@ -90,7 +90,7 @@ function EditProfile(){
                     text="Senha"
                     type="password"
                     name="password"
-                    placeholder="Digita seu senha"
+                    placeholder="Digita sua senha"
                     hadleOnChange={hadleChange}
                 />
                 <Input

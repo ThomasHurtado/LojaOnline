@@ -21,4 +21,6 @@
 .form_control input::placeholder{
     color: rgb(196, 193, 193);
     font-family: Arial;
+    font-style: italic;
+    font-size: 15px;
 }

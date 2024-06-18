@@ -16,6 +16,8 @@ import Profile from './pages/user/Profile';
 import EditProfile from './pages/user/EditProfile';
 import UserMoney from './pages/user/UserMoney';
 import CartProducts from './pages/user/CartProducts';
+import UserProducts from './pages/user/UserProducts';
+import EditProduct from './pages/product/EditProduct';
 
 //context
 import { UserProvider } from './context/UserContext';
@@ -45,6 +47,8 @@ function App() {
           <Route path="/money" element={<UserMoney />} /> 
           <Route path="/product/register" element={<AddProduct />} />
           <Route path="/cart" element={<CartProducts />} /> 
+          <Route path="/profile/myproducts" element={<UserProducts />} />
+          <Route path="/editproduct/:id" element={<EditProduct />} />
 
         </Routes>
         <Footer />
