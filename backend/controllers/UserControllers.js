@@ -254,4 +254,16 @@ module.exports = class UserController {
         }
 
       }
+
+      static async getUserbyId(req,res){
+
+        const userId = req.params.id
+        
+        try {
+            const user = await User.findById(userId)
+            res.status(200).json({user: user})
+        } catch (error) {
+            
+        }
+      }
 }

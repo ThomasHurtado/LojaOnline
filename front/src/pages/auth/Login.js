@@ -35,7 +35,7 @@ function Login(){
                     text="Senha"
                     type="password"
                     name="password"
-                    placeholder="Digita seu senha"
+                    placeholder="Digite sua senha"
                     hadleOnChange={hadleChange}
                 />
                 <input type="submit" value="Entrar"/>

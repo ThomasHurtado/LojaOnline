@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import Input from "../../components/Input"
 import styles from "./AddProduct.module.css"
 import useFlashMessage from "../../hooks/useFlashMessage"
+import { useParams } from 'react-router-dom'
 
 
 function EditProduct(){
@@ -11,6 +12,7 @@ function EditProduct(){
     const [product, setProduct] = useState({})
     const [token] = useState(localStorage.getItem('token') || '')
     const {setFlashMessage} = useFlashMessage()
+    let { productId } = useParams()
 
     useEffect (() =>{
         api.get('users/checkuser',{
@@ -23,7 +25,7 @@ function EditProduct(){
             console.error(error);
         })
 
-        api.get('product/getproduct/:id',{
+        api.get(`products/getproduct/${productId}`,{
             headers:{
                 Authorization: `Bearer ${JSON.parse(token)}`
             }
@@ -41,12 +43,12 @@ function EditProduct(){
     async function handleSubimit(e){
         e.preventDefault()
         
-        let msgText = 'Produto cadastrado com sucesso!'
+        let msgText = 'Produto atualizado com sucesso!'
         let msgType = 'success'
 
         try {
             
-            const data = await api.post('/products/register', product, {
+            const data = await api.patch(`products/editproduct/${productId}`, product, {
                 headers: {
                     Authorization: `Bearer ${JSON.parse(token)}`
                 }
@@ -78,6 +80,7 @@ function EditProduct(){
                     name="name"
                     placeholder="Digite o nome do produto"
                     hadleOnChange={hadleChange}
+                    value = {product.name || ''}
                 />
                 <Input
                     text="Marca"
@@ -85,6 +88,7 @@ function EditProduct(){
                     name="brand"
                     placeholder="Digite o nome da marca"
                     hadleOnChange={hadleChange}
+                    value = {product.brand || ''}
                 />
                 <Input
                     text="Estoque"
@@ -92,6 +96,7 @@ function EditProduct(){
                     name="amount"
                     placeholder="Digite a quantidade disponivel do produto"
                     hadleOnChange={hadleChange}
+                    value = {product.amount || ''}
                 />
                 <Input
                     text="Descrição"
@@ -99,6 +104,7 @@ function EditProduct(){
                     name="description"
                     placeholder="Digite a descrição do produto"
                     hadleOnChange={hadleChange}
+                    value = {product.description || ''}
                 />
                 <Input
                     text="Preço (taxa de 5%)"
@@ -106,6 +112,7 @@ function EditProduct(){
                     name="price"
                     placeholder="Digite o preço do item"
                     hadleOnChange={hadleChange}
+                    value = {product.price || ''}
                 />
                 <input type="submit" value="Salvar"/>
             </form>

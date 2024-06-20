@@ -4,6 +4,7 @@ const { Schema } = mongoose
 const SaleItemSchema = new Schema({
     product: { type: Schema.Types.ObjectId, ref: 'Product' },
     quantity: { type: Number, default: 1 } // A quantidade padrão é 1
+    
 });
 
 const SaleSchema = new Schema({

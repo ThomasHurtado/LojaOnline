@@ -105,4 +105,66 @@ module.exports = class ProductController{
         res.status(200).json({products: products,})
     }
 
+    static async editProduct(req, res){
+
+        const productId = req.params.id
+
+        const userId = req.id
+
+        const product = await Product.findById(productId)
+
+        if(!product){
+            return res.status(404).json({message: 'Produto não encontrado'})
+        }
+
+        if(product.owner._id.toString() !== userId.toString()){
+            return res.status(401).json({message: 'Você não tem permissão para editar'})
+        }
+            
+        const updatedProduct = {}
+        const {name, brand, amount, description, price} = req.body
+
+        if(!name){
+            res.status(422).json({ message: 'O nome do produto é obrigatório' })
+            return
+        }
+        
+        updatedProduct.name = name
+
+        if(!brand){
+            res.status(422).json({ message: 'A marca do produto é obrigatória'})
+            return
+        }
+
+        updatedProduct.brand = brand
+
+        if(!description){
+            res.status(422).json({ message: 'A descrição do produto é obrigatória'})
+            return
+        }
+
+        updatedProduct.description = description
+
+        if(!amount){
+            res.status(422).json({ message: 'A quantidade do produto é obrigatória'})
+            return
+        }
+
+        updatedProduct.amount = amount
+
+        if(!price){
+            res.status(422).json({ message: 'O preço do produto é obrigatório'})
+            return
+        }
+
+        updatedProduct.price = price
+
+        try {
+            await Product.findByIdAndUpdate(productId, updatedProduct)
+            res.status(200).json({ message: 'Produto atualizado com sucesso' })
+        } catch (error) {
+            res.status(500).json({ message: 'Erro ao atualizar produto' })
+        }
+    }
+
 }

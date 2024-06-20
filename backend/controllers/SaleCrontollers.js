@@ -87,4 +87,70 @@ module.exports = class SaleControllers{
             res.status(500).json({ message: 'Erro ao faturar compra' })
         }
     }
+
+    static async userSales(req, res){
+        const userId = req.id
+        const sales = await Sale.find({buyer: userId})
+
+        try {
+            
+
+            let productsWithQuantity = []
+            const teste = 0
+
+            for (const sale of sales) {
+                for (const item of sale.items) {
+                    productsWithQuantity.push({
+                        productId: item.product,
+                        quantity: item.quantity,
+                        date: sale.createdAt
+                    });
+                }
+            }
+            
+            res.status(200).json({ productsWithQuantity: productsWithQuantity, })
+        } catch (error) {
+            res.status(400).json({message: 'Nao deu certo'})
+            console.log(error)
+        }
+
+    }
+
+    static async userPurchases(req, res){
+        const userId = req.id
+
+        const user = await User.findById(userId)
+
+        const products = await Product.find({'owner._id':user._id})
+
+        if (products.length === 0) {
+            return res.status(404).json({ message: 'Nenhum produto encontrado' });
+        }
+
+        let purchases = []
+
+        for (const product of products) {
+            const sales = await Sale.find({ "items.product": product._id });
+
+            for (const sale of sales) {
+                for (const item of sale.items) {
+                    if (item.product.equals(product._id)) {
+                        purchases.push({
+                            productId: item.product,
+                            quantity: item.quantity,
+                            date: sale.createdAt,
+                            buyer: sale.buyer
+                        });
+                    }
+                }
+            }
+        }
+
+        try {
+            res.status(200).json({ purchases: purchases, })
+        } catch (error) {
+            res.status(400).json({message: 'Nao deu certo'})
+            console.log(error)
+        }
+    }
 }

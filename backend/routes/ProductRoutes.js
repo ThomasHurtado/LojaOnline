@@ -8,6 +8,7 @@ router.post('/register', checkToken, ProductController.register)
 router.get('/myproducts', checkToken, ProductController.getAllUserProducts)
 router.get('/allproducts', ProductController.getAllProducts)
 router.get('/getproduct/:id', ProductController.getProductbyId)
+router.patch('/editproduct/:id', checkToken, ProductController.editProduct)
 
 
 module.exports = router

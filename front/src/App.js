@@ -18,6 +18,8 @@ import UserMoney from './pages/user/UserMoney';
 import CartProducts from './pages/user/CartProducts';
 import UserProducts from './pages/user/UserProducts';
 import EditProduct from './pages/product/EditProduct';
+import UserSales from './pages/user/UserSales';
+import UserPurchases from './pages/user/UserPurchases';
 
 //context
 import { UserProvider } from './context/UserContext';
@@ -48,7 +50,9 @@ function App() {
           <Route path="/product/register" element={<AddProduct />} />
           <Route path="/cart" element={<CartProducts />} /> 
           <Route path="/profile/myproducts" element={<UserProducts />} />
-          <Route path="/editproduct/:id" element={<EditProduct />} />
+          <Route path="/editproduct/:productId" element={<EditProduct />} />
+          <Route path="/myshops" element={<UserSales />} />
+          <Route path="/mysales" element={<UserPurchases />} />
 
         </Routes>
         <Footer />

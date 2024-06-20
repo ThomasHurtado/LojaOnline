@@ -80,7 +80,7 @@ function EditProfile(){
                 />
                 <Input
                     text="Telefone"
-                    type="text"
+                    type="phone"
                     name="phone"
                     placeholder="Digite seu telefone"
                     hadleOnChange={hadleChange}

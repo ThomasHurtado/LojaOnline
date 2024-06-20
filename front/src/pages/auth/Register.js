@@ -1,4 +1,5 @@
 import { useContext, useState } from 'react'
+import InputMask from 'react-input-mask';
 
 import Input from '../../components/Input'
 import styles from './Register.module.css'
@@ -40,7 +41,7 @@ function Register(){
                 />
                 <Input
                     text="Telefone"
-                    type="text"
+                    type="phone"
                     name="phone"
                     placeholder="Digite seu telefone"
                     hadleOnChange={hadleChange}
