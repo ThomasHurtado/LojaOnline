@@ -6,6 +6,7 @@ import useFlashMessage from './useFlashMessage'
 export default function useAuth(){
 
     const [auth, setAuth] = useState(false)
+    const [user, setUser] = useState({})
     const {setFlashMessage} = useFlashMessage()
     const navigate = useNavigate()
 
@@ -23,6 +24,24 @@ export default function useAuth(){
             }
         }
     }, [])
+
+    const [token] = useState(localStorage.getItem('token') || '');
+    
+    async function checkUser(){
+        
+        let user
+        api.get('users/checkuser',{
+            headers:{
+                Authorization: `Bearer ${JSON.parse(token)}`
+            }
+        }).then((response) => {
+            user = response.data
+        }).catch((error) => {
+            console.error(error);
+        })
+
+        return user
+    }
 
     async function authUser(data){
 
@@ -129,5 +148,6 @@ export default function useAuth(){
 
     }
 
-    return { auth, register, logout, login, updatedMoneyPlus, updatedMoneyMinus }
+
+    return { auth, register, logout, login, updatedMoneyPlus, updatedMoneyMinus, checkUser }
 }

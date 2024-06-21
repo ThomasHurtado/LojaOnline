@@ -120,8 +120,10 @@ module.exports = class SaleControllers{
         const userId = req.id
 
         const user = await User.findById(userId)
+        console.log("t")
 
         const products = await Product.find({'owner._id':user._id})
+        console.log(products)
 
         if (products.length === 0) {
             return res.status(404).json({ message: 'Nenhum produto encontrado' });

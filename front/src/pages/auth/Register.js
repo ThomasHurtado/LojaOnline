@@ -47,6 +47,13 @@ function Register(){
                     hadleOnChange={hadleChange}
                 />
                 <Input
+                    text="CPF"
+                    type="cpf"
+                    name="cpf"
+                    placeholder="Digite seu CPF"
+                    hadleOnChange={hadleChange}
+                />
+                <Input
                     text="Senha"
                     type="password"
                     name="password"

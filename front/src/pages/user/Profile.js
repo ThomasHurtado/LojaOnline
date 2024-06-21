@@ -30,8 +30,8 @@ function Profile(){
                 <Link to ="/profile/edit" className={styles.profile_text}> Editar dados pessoais </Link>
                 <Link to ="/product/register" className={styles.profile_text}> Cadastrar produto</Link>
                 <Link to ="/profile/myproducts" className={styles.profile_text}> Editar produtos </Link>
-                <Link to ="/home" className={styles.profile_text}> Minhas compras </Link>
-                <Link to ="/home" className={styles.profile_text}> Minhas vendas </Link>
+                <Link to ="/mypurchases" className={styles.profile_text}> Minhas compras </Link>
+                <Link to ="/mysales" className={styles.profile_text}> Minhas vendas </Link>
             </div>
         </section>
         

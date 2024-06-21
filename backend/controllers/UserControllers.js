@@ -1,6 +1,6 @@
 const User = require('../models/User')
 const Cart = require('../models/Cart')
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
 
@@ -11,7 +11,7 @@ const check_token = require('../helpers/check-token')
 module.exports = class UserController {
 
     static async register(req, res){
-        const {name, email, phone, password, confirmpassword} = req.body
+        const {name, email, phone, cpf, password, confirmpassword} = req.body
 
         if(!name){
             res.status(422).json({message: 'O nome é obrigatorio!'})
@@ -25,6 +25,11 @@ module.exports = class UserController {
 
         if(!phone){
             res.status(422).json({message: 'O telefone é obrigatorio!'})
+            return
+        }
+
+        if(!cpf){
+            res.status(422).json({message: 'O CPF é obrigatorio!'})
             return
         }
 
@@ -57,6 +62,7 @@ module.exports = class UserController {
             name: name,
             email: email,
             phone: phone,
+            cpf: cpf,
             password : passwordHash,
         })
 

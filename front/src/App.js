@@ -51,7 +51,7 @@ function App() {
           <Route path="/cart" element={<CartProducts />} /> 
           <Route path="/profile/myproducts" element={<UserProducts />} />
           <Route path="/editproduct/:productId" element={<EditProduct />} />
-          <Route path="/myshops" element={<UserSales />} />
+          <Route path="/mypurchases" element={<UserSales />} />
           <Route path="/mysales" element={<UserPurchases />} />
 
         </Routes>

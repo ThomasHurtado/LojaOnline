@@ -1,26 +1,18 @@
 import { Link } from "react-router-dom"
 import { useState ,useEffect } from "react"
 import api from '../utils/api'
+import {Context} from "../context/UserContext"
+import { useContext } from 'react'
 
 import styles from './Navbar.module.css'
 
 function Navbar(){
     
-   
-    const [user, setUSer] = useState({})
+    const { user } = useContext(Context)
+    
     const [token] = useState(localStorage.getItem('token') || '')
 
-    useEffect (() =>{
-        api.get('users/checkuser',{
-            headers:{
-                Authorization: `Bearer ${JSON.parse(token)}`
-            }
-        }).then((response) => {
-            setUSer(response.data)
-        }).catch((error) => {
-            console.error(error);
-        })
-    }, [token])
+    
 
       let name;
       if (user && user.name) {

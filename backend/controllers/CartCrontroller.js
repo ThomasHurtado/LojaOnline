@@ -18,12 +18,14 @@ module.exports = class ProductController{
         } catch (error) {
             return res.status(401).json({message: 'Unauthorized access'})
         }
-
+        
         try {
             product = await Product.findById(id)
         } catch (error) {
             return res.status(404).json({message: 'Product not found'})
         }
+
+       
   
         try {
 
