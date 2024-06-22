@@ -25,7 +25,9 @@ module.exports = class ProductController{
             return res.status(404).json({message: 'Product not found'})
         }
 
-       
+       if(req.id === product.owner._id.toString()){
+        return res.status(400).json({message: 'Você não pode adicionar seu proprio produto ao carrinho!'})
+       }
   
         try {
 

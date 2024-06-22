@@ -6,7 +6,7 @@ const Context = createContext()
 
 function UserProvider({ children }){
     
-    const { auth, register, logout, login, updatedMoneyPlus, updatedMoneyMinus, checkUser} = useAuth()
+    const { auth, register, logout, login, updatedMoneyPlus, updatedMoneyMinus} = useAuth()
     const [user, setUser] = useState({});
     const [token] = useState(localStorage.getItem('token') || '');
 
@@ -30,7 +30,7 @@ function UserProvider({ children }){
     }, [token]);
 
     return(
-        <Context.Provider value = {{auth, register, logout, login, updatedMoneyPlus, updatedMoneyMinus, fetchUser, user, checkUser }}>
+        <Context.Provider value = {{auth, register, logout, login, updatedMoneyPlus, updatedMoneyMinus, fetchUser, user }}>
             {children}
         </Context.Provider>
     )
