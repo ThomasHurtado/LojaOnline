@@ -2,9 +2,10 @@ import {useState, useEffect} from 'react'
 import api from '../utils/api'
 import styles from "./product/Dashboard.module.css"
 import useFlashMessage from '../hooks/useFlashMessage'
+import { Context } from '../context/UserContext'
 
 function Home(){
-
+    
     const [products, setProducts] = useState([])
     const [token] = useState(localStorage.getItem('token') || '')
     const {setFlashMessage} = useFlashMessage()
@@ -20,14 +21,21 @@ function Home(){
             setProducts(response.data.products)
         })
 
-        
     }, [token])
+
+    useEffect(() => {
+        const reloaded = sessionStorage.getItem('reloaded');
+        if (!reloaded) {
+          sessionStorage.setItem('reloaded', 'true');
+          window.location.reload();
+        }
+      }, []);
 
     async function handleButtonClick(product){
         
         let msgText = 'Produto adicionado ao carrinho!'
         let msgType = 'success'
-        console.log(product.id)
+        
         try {
             
             const data = await api.patch(`/cart/addproduct/${product._id}`, {

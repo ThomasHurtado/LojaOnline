@@ -167,4 +167,15 @@ module.exports = class ProductController{
         }
     }
 
+    static async deleteProduct(req, res){
+        const productId = req.params.id
+        try {
+            await Product.findByIdAndDelete(productId)
+            res.status(200).json({ message: 'Produto deletado com sucesso' })
+            } catch (error) {
+                res.status(500).json({ message: 'Erro ao deletar produto' })
+                }
+                
+    }
+
 }

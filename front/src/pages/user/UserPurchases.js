@@ -1,7 +1,7 @@
 import api from '../../utils/api' 
 import { useEffect, useState } from "react"
 import styles from "./CartProducts.module.css"
-import useFlashMessage from '../../hooks/useFlashMessage'
+
 
 
 function UserPurchases(){
@@ -9,7 +9,7 @@ function UserPurchases(){
     const [products, setProducts] = useState([])
     const [user, setUser] = useState({})
     const [token] = useState(localStorage.getItem('token') || '')
-    const {setFlashMessage} = useFlashMessage()
+    
 
     useEffect (() =>{
         api.get('users/checkuser',{
@@ -24,7 +24,7 @@ function UserPurchases(){
 
         const fetchSalesProducts = async () => {
             try {
-                const response = await api.get('/sales//mypurchases', {
+                const response = await api.get('/sales/mypurchases', {
                     headers: {
                         Authorization: `Bearer ${JSON.parse(token)}`
                     }
@@ -69,7 +69,7 @@ function UserPurchases(){
     return(
         
         <section className={styles.productlist_header}>
-            <h1>Carrinho</h1>
+            <h1>Vendas</h1>
             <div className={styles.productlist_container}>
                 {products.length > 0 ? (
                     <>
@@ -91,7 +91,9 @@ function UserPurchases(){
                     </>
                     
                 ) : (
-                    <h1>Carrinho vazio</h1>
+                    <h1>
+                        Você não fez nenhuma venda ainda!
+                    </h1>
                 )}
             </div>
         </section>

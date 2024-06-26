@@ -8,13 +8,13 @@ function UserProvider({ children }){
     
     const { auth, register, logout, login, updatedMoneyPlus, updatedMoneyMinus} = useAuth()
     const [user, setUser] = useState({});
-    const [token] = useState(localStorage.getItem('token') || '');
+    const [token1] = useState(localStorage.getItem('token') || '');
 
     const fetchUser = async () => {
         try {
             const response = await api.get('/users/checkuser', {
                 headers: {
-                    Authorization: `Bearer ${JSON.parse(token)}`
+                    Authorization: `Bearer ${JSON.parse(token1)}`
                 }
             });
             setUser(response.data);
@@ -24,13 +24,13 @@ function UserProvider({ children }){
     };
 
     useEffect(() => {
-        if (token) {
-            fetchUser();
+        if(token1){
+        fetchUser()
         }
-    }, [token]);
+    }, [token1]);
 
     return(
-        <Context.Provider value = {{auth, register, logout, login, updatedMoneyPlus, updatedMoneyMinus, fetchUser, user }}>
+        <Context.Provider value = {{auth, register, logout, login, updatedMoneyPlus, updatedMoneyMinus, fetchUser, user, token1 }}>
             {children}
         </Context.Provider>
     )

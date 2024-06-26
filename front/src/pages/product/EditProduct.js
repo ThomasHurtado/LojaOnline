@@ -116,6 +116,7 @@ function EditProduct(){
                 />
                 <input type="submit" value="Salvar"/>
             </form>
+            
         </section>
         
         

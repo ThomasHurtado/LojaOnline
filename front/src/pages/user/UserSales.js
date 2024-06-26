@@ -1,7 +1,7 @@
 import api from '../../utils/api' 
 import { useEffect, useState } from "react"
 import styles from "./CartProducts.module.css"
-import useFlashMessage from '../../hooks/useFlashMessage'
+import { Link } from "react-router-dom";
 
 
 function UserSales(){
@@ -9,7 +9,7 @@ function UserSales(){
     const [products, setProducts] = useState([])
     const [user, setUser] = useState({})
     const [token] = useState(localStorage.getItem('token') || '')
-    const {setFlashMessage} = useFlashMessage()
+    
 
     useEffect (() =>{
         api.get('users/checkuser',{
@@ -64,7 +64,7 @@ function UserSales(){
     return(
         
         <section className={styles.productlist_header}>
-            <h1>Comprar de {user.name}</h1>
+            <h1>Compras de {user.name}</h1>
             <div className={styles.productlist_container}>
                 {products.length > 0 ? (
                     <>  
@@ -83,7 +83,13 @@ function UserSales(){
                     </>
                     
                 ) : (
-                    <h1>Você não fez nenhuma compra ainda!</h1>
+                    <h1>
+                        Você não fez nenhuma compra ainda, clique 
+                        <Link to='/home' style={{ marginLeft: '10px', marginRight: '10px', fontWeight: 'bold', textDecoration: 'underline' }}>
+                        aqui
+                        </Link> 
+                        para buscar por produtos!
+                    </h1>
                 )}
             </div>
         </section>

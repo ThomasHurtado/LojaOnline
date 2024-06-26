@@ -89,6 +89,12 @@ function CartProducts() {
         }
     }));
 
+    const handleClearCart = () => updateCartAndProducts(() => api.patch(`/cart/clearcart`, {
+        headers: {
+            Authorization: `Bearer ${JSON.parse(token)}`
+        }
+    }))
+
     const handleFinishSale = (cart) => {
         updateCartAndProducts(() => api.post(`/sales/finishsale/${cart._id}`, {
             headers: {
@@ -116,6 +122,7 @@ function CartProducts() {
             <div className={styles.productlist_container}>
                 {products.length > 0 ? (
                     <>
+                    
                     {products.map((product) => (
                         <div key={product._id} className={styles.product}>
                             <h2>{product.name}</h2>
@@ -131,10 +138,14 @@ function CartProducts() {
                             <button className={styles.product_button2} onClick={() => handleDeleteProduct(product)}>Excluir item</button>
                         </div>
                     ))}
-                    <div className={styles.product_checkout}>
-                        <h2>Valor total: $ {cart.price}</h2>
-                        <button className={styles.product_button2} onClick={() => handleFinishSale(cart)}>Finalizar compra</button>
-                    </div>
+                    
+                        <div className={styles.product_checkout}>
+                            <h2>Valor total: $ {cart.price}</h2>
+                            <button className={styles.product_button2} onClick={() => handleFinishSale(cart)}>Finalizar compra</button>
+                            <button className={styles.product_button2} onClick={() => handleClearCart(cart)}>Limpar carrinho</button>
+                            
+                        </div>
+                    
                     </>
                 ) : (
                     <h1>Carrinho vazio</h1>

@@ -151,6 +151,7 @@ module.exports = class ProductController{
             const cart = await Cart.findOne({owner: user._id})
         
             cart.items = []
+            cart.price = 0
             await cart.save();
             res.json({message: 'Carrinho limpo!'})
                 

@@ -1,7 +1,15 @@
 import styles from './Inicial.module.css'
 import { Link } from "react-router-dom"
+import {useState} from 'react'
 
 function Inicial(){
+
+    const [token] = useState(localStorage.getItem('token') || '')
+
+    if(token){
+    localStorage.removeItem('token')
+    
+    }
 
     return(
         <section>

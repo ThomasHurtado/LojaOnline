@@ -29,6 +29,7 @@ function UserMoney(){
         })
     }, [token])
 
+    
       let name;
       if (user && user.name) {
         name = user.name
